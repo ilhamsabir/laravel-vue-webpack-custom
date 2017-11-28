@@ -1,0 +1,141 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  background-color: #f4f6f8;
+}
+
+/*
+ * Typography
+ */
+
+h1 {
+  margin-bottom: 20px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #eee;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #f4f6f8;
+  border-right: 1px solid #dfe4e8;
+}
+
+.sidebar-builder {
+  /*background: #00044c;*/
+  /*color: #fff;*/
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+  width: 100%;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.sidebar .nav-link {
+  border-radius: 0;
+}
+
+/*
+ * Dashboard
+ */
+
+ /* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.bg-inverse {
+  background-color: #00044c!important;
+  border: 0px solid transparent
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar-branding__content {
+  padding: .5rem 1rem;
+}
+
+.navbar-list__content {
+  padding: .5rem 1rem;
+  background: #1c2260;
+}
+
+.navbar-branding-builder__content {
+  padding: .5rem 1rem;
+}
+
+.navbar-list-builder__content {
+  padding: .5rem 1rem;
+  align-items: center;
+  /*background: #fff;*/
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0;
+  position: relative;
+}
+
+
+.navbar-list-builder__content .navbar-inverse .navbar-nav .active > .nav-link,
+.navbar-list-builder__content .navbar-inverse .navbar-nav .nav-link.active,
+.navbar-list-builder__content .navbar-inverse .navbar-nav .nav-link.open,
+.navbar-list-builder__content .navbar-inverse .navbar-nav .open > .nav-link {
+  color: #333 !important;
+}
+.nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+  color: #5c6ac4;
+  cursor: default;
+  background-color: transparent;
+}
+
+.nav-link {
+  display: block;
+  padding: .5em 1em;
+  color: #212b35;
+}
+
+.nav-link:focus, .nav-link:hover {
+  text-decoration: none;
+  color: #5c6ac4;
+}
+
+.builder-navbar-link {
+  color: #fff !important;
+}
