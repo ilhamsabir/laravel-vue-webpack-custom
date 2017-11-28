@@ -1,8 +1,8 @@
 // The Vue build version to load with the `import` command
 import Vue from 'vue'
-import App from './components/App.vue'
+import App from './App.vue'
 // import * as Helper from './helper/helper.js'
-// import router from './router'
+import router from './router'
 // import VuePaginate from 'vue-paginate'
 
 // Vue.use(VuePaginate)
@@ -12,7 +12,7 @@ import App from './components/App.vue'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  // router,
+  router,
   template: '<App/>',
   components: { App }
 })
