@@ -1,20 +1,69 @@
-var path = require('path')
-var webpack = require('webpack')
+let path = require('path')
+let webpack = require('webpack')
+let isProd = process.env.NODE_ENV === 'production'
+
+// entries
+let entries = {
+  "builder": "./protected/resources/assets/js/app.js"
+}
+
+// output
+let outputs =  {
+  path: path.resolve(__dirname, 'assets/js'),
+  // publicPath: isProd ? '/app/' : `/app/`,
+  publicPath: '/app/',
+	filename: isProd ? 'prod/[name].[hash].bundle.js' : 'build/[name].bundle.js',
+	chunkFilename: isProd ? '[id].[hash].bundle.js' : '[id].bundle.js'
+  // path: path.resolve(__dirname, 'assets/js'),
+  // publicPath: '/app/',
+  // filename: 'build/[name].bundle.js',
+  // chunkFilename: '[id].bundle.js',
+}
+
+// plugins
+let plugins = []
+
+// set devtools
+let devtools;
+
+// check NODE_ENV prod or dev
+if (isProd) {
+
+  // new devtools
+  devtool = '#source-map'
+
+  // set new plugin uglifyjs
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+    },
+    output: {
+        comments: false
+    }
+  }))
+
+  // set new plugin loader
+  plugins.push(new webpack.LoaderOptionsPlugin({
+    minimize: true
+  }))
+} else {
+
+  // new devools
+  devtool = '#eval-source-map'
+}
 
 module.exports = {
-  entry: {
-    // path.resolve(__dirname, 'src') + 'js' + 'app' +'/index.js',
-    // "dashboard": "./web/resources/assets/app/components/dashboard.js",
-    // "builder": "./web/resources/assets/app/components/builder.js",
-    "builder": "./protected/resources/assets/js/app.js",
-    // "style": "./web/resources/assets/app/components/builder.js",
-  },
-  output: {
-      path: path.resolve(__dirname, 'assets/js'),
-      publicPath: '/app/',
-      filename: 'build/[name].bundle.js',
-      chunkFilename: '[id].bundle.js',
-  },
+  entry: entries,
+  output: outputs,
   module: {
     rules: [
       {
@@ -56,26 +105,6 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
+  plugins: plugins,
+  devtool: devtools
 }

@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <!-- <app-navbar></app-navbar> -->
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-  // import Navbar from './Navbar.vue'
 
   export default {
     name: 'Builder',
